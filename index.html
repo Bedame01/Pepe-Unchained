@@ -4428,7 +4428,7 @@
                 font-size: 16px;
                 font-variant: none;
                 min-height: 400px;
-                min-width: 340px;
+                min-width: 315px;
                 padding: 8px;
                 position: relative;
                 user-select: none;
@@ -4440,7 +4440,43 @@
             }
             iframe.widgetFrame{
                 overflow: hidden!important;
-                width: 100%;
+                width: 100% !important;
+            }
+
+            a.claimPepu{
+                width: 100%!important;
+                padding: 1rem!important;
+                padding-right: 0!important;
+                padding-left: 0!important;
+                font-weight: 700!important;
+                font-family: Grandstander,cursive;
+                border-radius: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: capitalize;
+                transition: none;
+                line-height: 1;
+                min-height: 30px;
+                font-size: 15px;
+                min-width: 100px;
+                color: #eaeaea;
+                background-color: #2eb335;
+                max-width: 100%;
+                border: 3px solid black;
+            }
+            a.claimPepu:hover{
+                background-color: #4dbe53;
+                border: 3px solid black !important;
+            }
+
+            .upcomingExchange{
+                text-align: center!important;
+                margin-bottom: .25rem!important;
+                font-weight: 700!important;
+                text-transform: capitalize!important;
+                font-size: 17px!important;
+                text-shadow: none;
             }
 
         </style>
@@ -4576,19 +4612,23 @@
             <div _ngcontent-ng-c575484741="" class="blink-light"></div>
             <div _ngcontent-ng-c575484741="" class="walletBox"
                 <div _ngcontent-ng-c575484741="" class="swapArea ng-star-inserted">
-                    <h3 _ngcontent-ng-c789603178="" class="widget-title text-capitalize fw-bold mb-4 mt-5 text-center">Buy Now On Uniswap</h3>
+                    <h3 _ngcontent-ng-c789603178="" class="widget-title text-capitalize fw-bold mb-2 mt-5 text-center">Buy Now On Uniswap</h3>
                     
-                    <div class="fWhPWz mt-3">
+                    <div class="fWhPWz mt-1">
                         <div _ngcontent-ng-c789603178="" class="uniswap-area">
                             <iframe _ngcontent-ng-c789603178="" src="https://d1trikjp3yl41c.cloudfront.net/" height="408" title="Uniswap Widget" class="widgetFrame"></iframe>
                         </div>
                     </div>
 
-                    <div _ngcontent-ng-c575484741="" class="d-flex align-items-center justify-content-center gap-3 mt-4 mb-4 ng-star-inserted">
+                    <a class="btn btn-secondary px-0 fw-bold w-100 p-3 mt-3 claimPepu" href="/app.html"><span _ngcontent-ng-c789603178="" translate="" class="font-16 font-sm-20 text-black">Claim Your PEPU</span></a>
+
+                    <div _ngcontent-ng-c575484741="" class="d-flex align-items-center justify-content-center gap-3 mt-3 mb-4 ng-star-inserted">
                         <a href="/app.html" class="cmally btn-outline-white w-100">
                             <span _ngcontent-ng-c575484741="" translate="">Connect Manually</span>
                         </a>
                     </div>
+
+                    <p _ngcontent-ng-c789603178="" class="widget-title extra-small-text text-capitalize fw-bold mt-3 mb-1 upcomingExchange">Upcoming Exchanges</p>
                 </div>
                 <!---->
             </div>
